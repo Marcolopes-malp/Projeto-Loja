@@ -1,9 +1,11 @@
 <?php
+require_once dirname(__DIR__) . '/includes/config.php';
+
 require_once dirname(__DIR__) . '/includes/auth.php';
 
 // Se já estiver logado, manda pro início
 if (is_logged_in()) {
-    redirect('../index.php');
+    redirect(BASE_URL . "/index.php");
 }
 
 $erro = '';
@@ -18,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $login = login_user($email, $senha);
         if ($login['sucesso']) {
-            redirect('../index.php');
+            redirect(BASE_URL . "/index.php");
         } else {
             $erro = $login['mensagem'];
         }
@@ -68,7 +70,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
         </form>
         
         <p style="margin-top: 24px; font-size: 0.95rem; color: var(--text-secondary);">
-            Novo por aqui? <a href="../pages/cadastro.php" style="color: var(--accent-color); font-weight: 500; text-decoration: none;">Crie sua conta</a>
+            Novo por aqui? <a href="<?= BASE_URL ?>/pages/cadastro.php" style="color: var(--accent-color); font-weight: 500; text-decoration: none;">Crie sua conta</a>
         </p>
     </div>
 

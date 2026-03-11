@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__DIR__) . '/includes/config.php';
+
 session_start();
 require_once dirname(__DIR__) . '/includes/data.php';
 
@@ -33,7 +35,7 @@ if ($acao === 'add' && $id > 0) {
         }
     }
     // Return to the previous page (details or shop) or to cart
-    header("Location: ../pages/carrinho.php");
+    header("Location: " . BASE_URL . "/pages/carrinho.php");
     exit;
 }
 
@@ -48,7 +50,7 @@ if ($acao === 'remove' && $id > 0) {
         }
     }
     // Return to cart page
-    header("Location: ../pages/carrinho.php");
+    header("Location: " . BASE_URL . "/pages/carrinho.php");
     exit;
 }
 
@@ -73,7 +75,7 @@ if ($acao === 'update' && $id > 0 && isset($_POST['qtde'])) {
             }
         }
     }
-    header("Location: ../pages/carrinho.php");
+    header("Location: " . BASE_URL . "/pages/carrinho.php");
     exit;
 }
 
@@ -88,17 +90,17 @@ if ($acao === 'simular_frete' && isset($_POST['cep'])) {
         }
         $_SESSION['cep_simulado'] = substr($cep, 0, 5) . '-' . substr($cep, 5);
     }
-    header("Location: ../pages/carrinho.php");
+    header("Location: " . BASE_URL . "/pages/carrinho.php");
     exit;
 }
 
 if ($acao === 'aplicar_cupom' && isset($_POST['cupom'])) {
     $cupom = strtoupper(trim($_POST['cupom']));
     $_SESSION['cupom'] = $cupom;
-    header("Location: ../pages/carrinho.php");
+    header("Location: " . BASE_URL . "/pages/carrinho.php");
     exit;
 }
 
 // Fallback redirect
-header("Location: ../index.php");
+header("Location: " . BASE_URL . "/index.php");
 exit;

@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__DIR__) . '/includes/config.php';
+
 session_start(); // Inicia a sessão para controle de login
 
 $users_file = dirname(__DIR__) . '/data/users.json';

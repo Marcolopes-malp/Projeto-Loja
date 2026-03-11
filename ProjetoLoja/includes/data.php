@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__DIR__) . '/includes/config.php';
+
 $placeholder_img = 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-card-40-iphone15hero-202309_FMT_WHH?wid=508&hei=472&fmt=p-jpg&qlt=95&.v=1693086290559';
 
 function get_img($path)
@@ -12,7 +14,7 @@ function get_img($path)
 
     // Se for um arquivo local, verifica se ele de fato existe na pasta
     if (file_exists(dirname(__DIR__) . '/' . $path)) {
-        return '/ProjetoLoja/ProjetoLoja/' . $path;
+        return BASE_URL . '/' . $path;
     }
 
     // Caso contrário, mostra o placeholder padrão testando a loja

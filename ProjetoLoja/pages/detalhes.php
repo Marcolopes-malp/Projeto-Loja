@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__DIR__) . '/includes/config.php';
+
 // Inclui o array de iPhones
 require_once dirname(__DIR__) . '/includes/data.php';
 
@@ -32,9 +34,9 @@ require_once dirname(__DIR__) . '/includes/header.php';
 <?php if ($iphone): ?>
     
     <div class="breadcrumb">
-        <a href="../index.php">Início</a>
+        <a href="<?= BASE_URL ?>/index.php">Início</a>
         <span class="breadcrumb-separator">&rsaquo;</span>
-        <a href="../index.php#<?= strpos(strtolower($iphone['condicao']), 'novo') !== false ? 'lacrados' : 'seminovos' ?>">
+        <a href="<?= BASE_URL ?>/index.php#<?= strpos(strtolower($iphone["condicao']), 'novo') !== false ? 'lacrados' : 'seminovos' ?>">
             <?= strpos(strtolower($iphone['condicao']), 'novo') !== false ? 'Lançamentos' : 'Seminovos' ?>
         </a>
         <span class="breadcrumb-separator">&rsaquo;</span>
@@ -113,7 +115,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
             <div class="details-actions" style="display: flex; flex-direction: column; gap: 12px;">
                 
                 <!-- Botão Adicionar ao Carrinho -->
-                <form method="POST" action="../pages/carrinho_acao.php">
+                <form method="POST" action="<?= BASE_URL ?>/pages/carrinho_acao.php">
                     <input type="hidden" name="acao" value="add">
                     <input type="hidden" name="id" value="<?= $iphone['id'] ?>">
                     <button type="submit" class="btn btn-outline btn-block" style="display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 1.1rem; padding: 18px; border-radius: 12px; font-weight: 500;">
@@ -145,7 +147,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
     <div style="text-align: center; padding: 100px 0;">
         <h1>Aparelho Indisponível</h1>
         <p style="color: var(--text-secondary); margin: 20px 0; font-size: 1.2rem;">Este iPhone pode ter se esgotado ou o link está incorreto.</p>
-        <a href="../index.php" class="btn btn-primary">Voltar para a Página Inicial</a>
+        <a href="<?= BASE_URL ?>/index.php" class="btn btn-primary">Voltar para a Página Inicial</a>
     </div>
 <?php endif; ?>
 

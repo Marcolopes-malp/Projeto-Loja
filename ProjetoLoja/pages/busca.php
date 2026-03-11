@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__DIR__) . '/includes/config.php';
+
 require_once dirname(__DIR__) . '/includes/data.php';
 
 $termo_busca = isset($_GET['q']) ? trim($_GET['q']) : '';
@@ -32,7 +34,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
 
     <!-- Breadcrumb -->
     <div class="breadcrumb" style="padding-top: 0; padding-bottom: 24px;">
-        <a href="../index.php">Início</a>
+        <a href="<?= BASE_URL ?>/index.php">Início</a>
         <span class="breadcrumb-separator">&rsaquo;</span>
         <span style="color: var(--text-main);">Resultados da Busca</span>
     </div>
@@ -52,7 +54,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
                 $badge_texto = strpos(strtolower($iphone['condicao']), 'novo') !== false ? 'Novo' : 'Usado Certificado';
                 $badge_estilo = $badge_texto === 'Novo' ? '' : 'background: rgba(255,149,0,0.15); color: #ff9f0a;';
             ?>
-            <a href="../pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
+            <a href="<?= BASE_URL ?>/pages/detalhes.php?id=<?= $iphone["id'] ?>" class="product-card">
                 <span class="badge-condition" style="<?= $badge_estilo ?>"><?= $badge_texto ?></span>
                 
                 <div class="product-image-wrapper">
@@ -76,7 +78,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--border-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 20px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <h2 style="font-size: 1.5rem; margin-bottom: 12px;">Nenhum produto encontrado</h2>
             <p style="color: var(--text-secondary); margin-bottom: 30px;">Tente pesquisar por termos como "Pro Max", "128GB" ou "14".</p>
-            <a href="../index.php" class="btn btn-primary" style="padding: 14px 30px;">Voltar ao Início</a>
+            <a href="<?= BASE_URL ?>/index.php" class="btn btn-primary" style="padding: 14px 30px;">Voltar ao Início</a>
         </div>
     <?php endif; ?>
 

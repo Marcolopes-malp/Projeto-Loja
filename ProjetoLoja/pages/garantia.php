@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__DIR__) . '/includes/config.php';
+
 require_once dirname(__DIR__) . '/includes/header.php';
 ?>
 
@@ -8,7 +10,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
         Todos os nossos aparelhos seminovos passam por uma rigorosa avaliação técnica e possuem <strong>3 meses de garantia</strong> balcão para defeitos de fabricação (não cobre mau uso).<br><br>
         Os aparelhos lacrados acompanham a garantia oficial de <strong>1 ano da Apple</strong> e podem ser acionados em qualquer autorizada no Brasil.
     </p>
-    <a href="../index.php" class="btn btn-outline" style="border-radius: 980px;">Voltar ao início</a>
+    <a href="<?= BASE_URL ?>/index.php" class="btn btn-outline" style="border-radius: 980px;">Voltar ao início</a>
 </div>
 
 <?php require_once dirname(__DIR__) . '/includes/footer.php'; ?>
