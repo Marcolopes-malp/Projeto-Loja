@@ -22,14 +22,14 @@ require_once __DIR__ . '/includes/header.php';
         <div class="slide-content">
             <h1>iPhone 17 Pro.</h1>
             <p>Titânio. Mais forte. Mais leve. Mais Pro.</p>
-            <a href="/ProjetoLoja/ProjetoLoja/pages/categoria.php?tipo=lacrados" class="btn btn-outline" style="margin-top: 24px;">Comprar Agora</a>
+            <a href="./pages/categoria.php?tipo=lacrados" class="btn btn-outline" style="margin-top: 24px;">Comprar Agora</a>
         </div>
     </div>
     <div class="slide" style="background: linear-gradient(135deg, #1d1d1f 0%, #000 100%);">
         <div class="slide-content">
             <h1 style="color: #f5f5f7;">Seminovos Premium A+</h1>
             <p style="color: #a1a1a6;">Certificação direta e desconto de até 40%. Qualidade impecável.</p>
-            <a href="/ProjetoLoja/ProjetoLoja/pages/categoria.php?tipo=seminovos" class="btn btn-outline" style="margin-top: 24px; border-color: #f5f5f7; color: #f5f5f7;">Ver Modelos</a>
+            <a href="./pages/categoria.php?tipo=seminovos" class="btn btn-outline" style="margin-top: 24px; border-color: #f5f5f7; color: #f5f5f7;">Ver Modelos</a>
         </div>
     </div>
     <div class="slide-controls">
@@ -137,11 +137,11 @@ setInterval(() => {
 <!-- Seção: Lacrados -->
 <h2 class="section-title" id="lacrados">
     <span>Lançamentos Lacrados</span>
-    <a href="/ProjetoLoja/ProjetoLoja/pages/categoria.php?tipo=lacrados" class="section-link">Ver todos &rsaquo;</a>
+    <a href="./pages/categoria.php?tipo=lacrados" class="section-link">Ver todos &rsaquo;</a>
 </h2>
 <div class="products-grid" style="margin-bottom: 30px;">
     <?php foreach (array_slice($lacrados, 0, 4) as $iphone): ?>
-        <a href="/ProjetoLoja/ProjetoLoja/pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
+        <a href="./pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
             <span class="badge-condition">Novo</span>
             
             <div class="product-image-wrapper">
@@ -163,18 +163,18 @@ setInterval(() => {
 
 <?php if (count($lacrados) > 4): ?>
 <div style="text-align: center; margin-bottom: 60px;">
-    <a href="/ProjetoLoja/ProjetoLoja/pages/categoria.php?tipo=lacrados" class="btn btn-outline" style="padding: 10px 40px; border-radius: 980px; text-decoration: none;">Ver mais modelos Lacrados</a>
+    <a href="./pages/categoria.php?tipo=lacrados" class="btn btn-outline" style="padding: 10px 40px; border-radius: 980px; text-decoration: none;">Ver mais modelos Lacrados</a>
 </div>
 <?php endif; ?>
 
 <!-- Seção: Seminovos Premium -->
 <h2 class="section-title" id="seminovos">
     <span>Seminovos Premium A+</span>
-    <a href="/ProjetoLoja/ProjetoLoja/pages/categoria.php?tipo=seminovos" class="section-link">Ver todos &rsaquo;</a>
+    <a href="./pages/categoria.php?tipo=seminovos" class="section-link">Ver todos &rsaquo;</a>
 </h2>
 <div class="products-grid" style="margin-bottom: 30px;">
     <?php foreach (array_slice($seminovos, 0, 8) as $iphone): ?>
-        <a href="/ProjetoLoja/ProjetoLoja/pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
+        <a href="./pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
             <span class="badge-condition" style="background: rgba(255,149,0,0.15); color: #ff9f0a;">Usado Certificado</span>
             
             <div class="product-image-wrapper">
@@ -196,7 +196,7 @@ setInterval(() => {
 
 <?php if (count($seminovos) > 8): ?>
 <div style="text-align: center; margin-bottom: 60px;">
-    <a href="/ProjetoLoja/ProjetoLoja/pages/categoria.php?tipo=seminovos" class="btn btn-outline" style="padding: 10px 40px; border-radius: 980px; text-decoration: none;">Ver mais modelos Seminovos</a>
+    <a href="./pages/categoria.php?tipo=seminovos" class="btn btn-outline" style="padding: 10px 40px; border-radius: 980px; text-decoration: none;">Ver mais modelos Seminovos</a>
 </div>
 <?php endif; ?>
 
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (prod) {
                 found = true;
                 grid.innerHTML += `
-                    <a href="/ProjetoLoja/ProjetoLoja/pages/detalhes.php?id=${prod.id}" class="product-card" style="transform: scale(0.95);">
+                    <a href="./pages/detalhes.php?id=${prod.id}" class="product-card" style="transform: scale(0.95);">
                         <div class="product-image-wrapper" style="height: 150px;">
                             <img src="${prod.imagem_url}" class="product-image">
                         </div>

@@ -24,7 +24,7 @@ if ($tipo === 'lacrados') {
     });
 } else {
     // Redireciona para o início se o tipo for inválido
-    header("Location: /ProjetoLoja/ProjetoLoja/index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -36,7 +36,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
 
     <!-- Breadcrumb de Navegação -->
     <div class="breadcrumb" style="padding-top: 0; padding-bottom: 24px;">
-        <a href="/ProjetoLoja/ProjetoLoja/index.php">Início</a>
+        <a href="../index.php">Início</a>
         <span class="breadcrumb-separator">&rsaquo;</span>
         <span style="color: var(--text-main);"><?= htmlspecialchars($titulo_pagina) ?></span>
     </div>
@@ -49,7 +49,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
     <!-- Grid de Produtos completo -->
     <div class="products-grid" style="margin-bottom: 60px;">
         <?php foreach ($produtos as $iphone): ?>
-            <a href="/ProjetoLoja/ProjetoLoja/pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
+            <a href="../pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
                 <span class="badge-condition" style="<?= $badge_estilo ?>"><?= $badge_texto ?></span>
                 
                 <div class="product-image-wrapper">
@@ -71,7 +71,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
 
     <!-- Feito para voltar rapidamente -->
     <div style="text-align: center; padding-bottom: 40px;">
-        <a href="/ProjetoLoja/ProjetoLoja/index.php" class="btn btn-secondary" style="border: none;">&lsaquo; Voltar ao Início</a>
+        <a href="../index.php" class="btn btn-secondary" style="border: none;">&lsaquo; Voltar ao Início</a>
     </div>
 
 </div>

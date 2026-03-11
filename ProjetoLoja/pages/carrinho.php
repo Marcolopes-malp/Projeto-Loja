@@ -59,7 +59,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
 <div class="container" style="padding-top: 40px; padding-bottom: 60px; min-height: 60vh;">
     
     <div class="breadcrumb" style="padding-top: 0; padding-bottom: 24px;">
-        <a href="/ProjetoLoja/ProjetoLoja/index.php">Início</a>
+        <a href="../index.php">Início</a>
         <span class="breadcrumb-separator">&rsaquo;</span>
         <span style="color: var(--text-main);">Carrinho de Compras</span>
     </div>
@@ -71,7 +71,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--border-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 20px;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             <h2 style="font-size: 1.5rem; margin-bottom: 12px;">Seu carrinho está vazio</h2>
             <p style="color: var(--text-secondary); margin-bottom: 30px;">Adicione alguns dos nossos aparelhos ao seu carrinho para poder prosseguir.</p>
-            <a href="/ProjetoLoja/ProjetoLoja/index.php" class="btn btn-primary" style="padding: 14px 30px;">Continuar Comprando</a>
+            <a href="../index.php" class="btn btn-primary" style="padding: 14px 30px;">Continuar Comprando</a>
         </div>
     <?php else: ?>
         <div style="display: grid; grid-template-columns: 1fr 380px; gap: 40px; align-items: start;">
@@ -99,7 +99,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
                             </div>
                             
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <form method="POST" action="/ProjetoLoja/ProjetoLoja/pages/carrinho_acao.php" style="display: flex; align-items: center; gap: 10px; background: var(--bg-color); padding: 4px; border-radius: 8px;">
+                                <form method="POST" action="../pages/carrinho_acao.php" style="display: flex; align-items: center; gap: 10px; background: var(--bg-color); padding: 4px; border-radius: 8px;">
                                     <input type="hidden" name="acao" value="update">
                                     <input type="hidden" name="id" value="<?= $produto['id'] ?>">
                                     <button type="submit" name="qtde" value="<?= $produto['quantidade_carrinho'] - 1 ?>" style="background: none; border: none; cursor: pointer; padding: 4px 10px; font-size: 1.1rem; color: var(--text-main);">-</button>
@@ -107,7 +107,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
                                     <button type="submit" name="qtde" value="<?= $produto['quantidade_carrinho'] + 1 ?>" style="background: none; border: none; cursor: pointer; padding: 4px 10px; font-size: 1.1rem; color: var(--text-main);">+</button>
                                 </form>
                                 
-                                <form method="POST" action="/ProjetoLoja/ProjetoLoja/pages/carrinho_acao.php">
+                                <form method="POST" action="../pages/carrinho_acao.php">
                                     <input type="hidden" name="acao" value="remove">
                                     <input type="hidden" name="id" value="<?= $produto['id'] ?>">
                                     <button type="submit" style="background: none; border: none; cursor: pointer; color: #E53935; font-size: 0.95rem; font-weight: 500; text-decoration: underline;">Remover</button>
@@ -146,14 +146,14 @@ require_once dirname(__DIR__) . '/includes/header.php';
                 <?php endif; ?>
 
                 <!-- Simulador de Frete -->
-                <form method="POST" action="/ProjetoLoja/ProjetoLoja/pages/carrinho_acao.php" style="display: flex; gap: 8px; margin-bottom: 12px;">
+                <form method="POST" action="../pages/carrinho_acao.php" style="display: flex; gap: 8px; margin-bottom: 12px;">
                     <input type="hidden" name="acao" value="simular_frete">
                     <input type="text" name="cep" placeholder="Simular CEP" required maxlength="9" style="flex: 1; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;">
                     <button type="submit" class="btn btn-secondary" style="padding: 0 16px; border-radius: 8px;">OK</button>
                 </form>
 
                 <!-- Cupom de Desconto -->
-                <form method="POST" action="/ProjetoLoja/ProjetoLoja/pages/carrinho_acao.php" style="display: flex; gap: 8px; margin-bottom: 24px;">
+                <form method="POST" action="../pages/carrinho_acao.php" style="display: flex; gap: 8px; margin-bottom: 24px;">
                     <input type="hidden" name="acao" value="aplicar_cupom">
                     <input type="text" name="cupom" placeholder="Cupom de desconto" value="<?= htmlspecialchars($cupom_aplicado) ?>" style="flex: 1; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem; text-transform: uppercase;">
                     <button type="submit" class="btn btn-secondary" style="padding: 0 16px; border-radius: 8px;">Usar</button>

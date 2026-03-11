@@ -6,7 +6,7 @@
                 <ul>
                     <li><a href="#">Mac</a></li>
                     <li><a href="#">iPad</a></li>
-                    <li><a href="/ProjetoLoja/ProjetoLoja/index.php">iPhone</a></li>
+                    <li><a href="<?= $BASE_URL ?>/index.php">iPhone</a></li>
                     <li><a href="#">Apple Watch</a></li>
                     <li><a href="#">AirPods</a></li>
                 </ul>
@@ -23,9 +23,9 @@
             <div class="footer-col">
                 <h4>A RFIphones</h4>
                 <ul>
-                    <li><a href="/ProjetoLoja/ProjetoLoja/pages/sobre.php">Nossa História</a></li>
-                    <li><a href="/ProjetoLoja/ProjetoLoja/pages/faq.php">Dúvidas Frequentes</a></li>
-                    <li><a href="/ProjetoLoja/ProjetoLoja/pages/garantia.php">Termos de Garantia</a></li>
+                    <li><a href="<?= $BASE_URL ?>/pages/sobre.php">Nossa História</a></li>
+                    <li><a href="<?= $BASE_URL ?>/pages/faq.php">Dúvidas Frequentes</a></li>
+                    <li><a href="<?= $BASE_URL ?>/pages/garantia.php">Termos de Garantia</a></li>
                 </ul>
             </div>
             
@@ -45,6 +45,6 @@
     </div>
 </footer>
 
-<script src="/ProjetoLoja/ProjetoLoja/assets/main.js"></script>
+<script src="<?= $BASE_URL ?>/assets/main.js"></script>
 </body>
 </html>

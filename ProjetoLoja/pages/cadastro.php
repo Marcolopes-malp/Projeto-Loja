@@ -3,7 +3,7 @@ require_once dirname(__DIR__) . '/includes/auth.php';
 
 // Se já estiver logado, manda pro início
 if (is_logged_in()) {
-    redirect('/ProjetoLoja/ProjetoLoja/index.php');
+    redirect('../index.php');
 }
 
 $erro = '';
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($registro['sucesso']) {
             // Loga automaticamente e vai pro inicio
             login_user($email, $senha);
-            redirect('/ProjetoLoja/ProjetoLoja/index.php');
+            redirect('../index.php');
         } else {
             $erro = $registro['mensagem'];
         }
@@ -83,7 +83,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
         </form>
         
         <p style="margin-top: 24px; font-size: 0.95rem; color: var(--text-secondary);">
-            Já tem uma conta? <a href="/ProjetoLoja/ProjetoLoja/pages/login.php" style="color: var(--accent-color); font-weight: 500; text-decoration: none;">Faça login</a>
+            Já tem uma conta? <a href="../pages/login.php" style="color: var(--accent-color); font-weight: 500; text-decoration: none;">Faça login</a>
         </p>
     </div>
 
