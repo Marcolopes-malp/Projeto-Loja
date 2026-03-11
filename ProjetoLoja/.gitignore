@@ -1,0 +1,14 @@
+
+# Pastas de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de log e cache
+*.log
+npm-debug.log*
+
+# Se você usar o Composer no futuro
+/vendor/
+
+# Arquivos de configuração sensíveis (senhas, etc)
+.env

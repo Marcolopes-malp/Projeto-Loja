@@ -1,0 +1,68 @@
+# Melhorias de UX e Conversão - Projeto Loja
+
+Este plano documenta a implementação de diversas melhorias visuais e funcionais na loja simulada para melhorar a experiência do usuário (UX) e as taxas de conversão (Gatilhos mentais, checkout simplificado, recursos de conta locais).
+
+## User Review Required
+O usuário já aprovou as ideias gerais. Favor revisar os detalhes técnicos listados abaixo antes de começarmos a codar.
+
+## Proposed Changes
+
+### 1. Dados e Estrutura (Backend/Simulação)
+#### [MODIFY] [data.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/includes/data.php)
+- Adicionar chaves `estoque` aos produtos para simular escassez.
+- Adicionar chaves auxiliares de imagens para mais produtos para popular o carrossel.
+- Criar array `$avaliacoes` com depoimentos falsos.
+- Criar array `$cupons_validos` para uso no carrinho.
+
+### 2. Estilização e Scripts Globais
+#### [MODIFY] [estilo.css](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/assets/estilo.css)
+- Adicionar esquema de cores para Dark Mode (`data-theme="dark"`).
+- Estilos para notificações Toast.
+- Estilos para botão de Favoritos (Wishlist).
+- Estilos para seção de Avaliações e Carrossel principal.
+#### [NEW] [main.js](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/assets/main.js)
+- Global JS para: Alternância de Dark Mode no `localStorage`, sistema de exibições de Toast (`showToast()`), controle de `localStorage` para Wishlist (Favoritos) e Vistos Recentemente.
+
+### 3. Componentes Globais (Header e Footer)
+#### [MODIFY] [header.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/includes/header.php)
+- Adicionar botão de alternância Claro/Escuro (sol/lua).
+- Adicionar link para a página de Favoritos.
+- Adicionar formulário real em volta do input de busca apontando para `busca.php`.
+- Importar `main.js` no final do arquivo.
+#### [MODIFY] [footer.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/includes/footer.php)
+- Atualizar links institucionais (FAQ, Sobre, Garantia) e apontar para as novas páginas.
+
+### 4. Funcionalidades Core (Carrinho e Detalhes)
+#### [MODIFY] [carrinho.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/pages/carrinho.php)
+- Adicionar campo visual para simular cálculo de Frete.
+- Adicionar campo visual para inserir Cupom de Desconto.
+- Atualizar a formatação da string que vai para o WhatsApp com descontos/frete.
+#### [MODIFY] [carrinho_acao.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/pages/carrinho_acao.php)
+- Adicionar rotas via `$_POST` para aplicar frete e validar cupom (salvando em `$_SESSION`).
+#### [MODIFY] [detalhes.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/pages/detalhes.php)
+- Adicionar botão interativo "Favoritar" (coração) que chama JS.
+- Inserir Script JS na página para salvar este ID em "Vistos Recentemente" (`localStorage`).
+- Exibir badge HTML de "Restam apenas X unidades" se o estoque for menor ou igual a 3.
+
+### 5. Novas Páginas
+#### [NEW] [busca.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/pages/busca.php)
+- Lê `$_GET['q']` e filtra dinamicamente o array de produtos, retornando o grid renderizado.
+#### [NEW] [favoritos.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/pages/favoritos.php)
+- Lê os IDs do `localStorage` via JS (ou os envia pro PHP) para renderizar a lista de desejos.
+#### [NEW] [faq.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/pages/faq.php), [sobre.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/pages/sobre.php), [garantia.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/pages/garantia.php)
+- Páginas de conteúdo simples com texto institucional simulado.
+
+### 6. Página Inicial
+#### [MODIFY] [index.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/index.php)
+- Substituir Hero estático por carrossel de imagens com temporizador (JS).
+- Adicionar seção "Aparelhos Vistos Recentemente" renderizada dinamicamente com base no `localStorage`.
+- Adicionar seção inferior de Depoimentos/Reviews puxados do [data.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/includes/data.php).
+
+## Verification Plan
+### Automated Tests
+Sem testes automatizados. O site é puramente PHP dinâmico tradicional (+ JS baunilha).
+
+### Manual Verification
+1. **Carrinho:** Abrir [carrinho.php](file:///c:/xampp/htdocs/ProjetoLoja/ProjetoLoja/pages/carrinho.php), adicionar cupom "PROMO10", verificar se subtotal diminui 10%. Simular cep, confirmar botão do WhatsApp com novo texto.
+2. **Favoritos e Dark Mode:** Clicar na logo Lua no Header. Verificar persistência em outras páginas. Clicar no botão coração num produto, ir em favoritos, checar se ele aparece via JS.
+3. **Detalhes e Inicial:** Verificar home exibindo carrossel, depoimentos e itens recentes (se abriu detalhes antes). Testar a busca superior.

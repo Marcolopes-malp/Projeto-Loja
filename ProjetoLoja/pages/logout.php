@@ -1,0 +1,5 @@
+<?php
+require_once dirname(__DIR__) . '/includes/auth.php';
+logout_user();
+redirect('/ProjetoLoja/ProjetoLoja/index.php');
+?>
