@@ -3,7 +3,7 @@
 $host = 'localhost'; // O pulo do gato: na HostGator, o host continua sendo localhost!
 $dbname = 'marc7906_Loja'; // Coloque o nome completo do banco
 $user = 'marc7906_admin';  // Coloque o nome completo do usuário
-$pass = 'Jm@13092018'; // A senha que você gerou lá no passo 4
+$pass = "Jm@13092018"; // A senha que você gerou lá no passo 4
 
 try {
     // Tenta fazer a conexão
