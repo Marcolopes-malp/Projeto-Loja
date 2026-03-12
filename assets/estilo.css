@@ -726,4 +726,8 @@ footer {
     display: none;
     /* Hide on mobile for simplicity */
   }
+
+  .d-none-mobile {
+    display: none !important;
+  }
 }

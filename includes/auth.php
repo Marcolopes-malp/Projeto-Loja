@@ -90,6 +90,7 @@ function is_logged_in() {
  * Redireciona o usuário para uma página específica.
  */
 function redirect($url) {
+    session_write_close();
     header("Location: $url");
     exit;
 }
