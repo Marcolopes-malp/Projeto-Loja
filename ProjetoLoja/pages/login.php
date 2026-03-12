@@ -48,7 +48,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
             </div>
         <?php endif; ?>
 
-        <form method="POST" action="login.php" style="text-align: left;">
+        <form method="POST" action="<?= BASE_URL ?>/pages/login.php" style="text-align: left;">
             <div style="margin-bottom: 16px;">
                 <label for="email" style="display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 8px;">E-mail</label>
                 <input type="email" id="email" name="email" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" 

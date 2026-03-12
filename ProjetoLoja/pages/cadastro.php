@@ -52,7 +52,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
             </div>
         <?php endif; ?>
 
-        <form method="POST" action="cadastro.php" style="text-align: left;">
+        <form method="POST" action="<?= BASE_URL ?>/pages/cadastro.php" style="text-align: left;">
             <div style="margin-bottom: 16px;">
                 <label for="nome" style="display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 8px;">Nome Completo</label>
                 <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>" 

@@ -143,7 +143,7 @@ setInterval(() => {
 </h2>
 <div class="products-grid" style="margin-bottom: 30px;">
     <?php foreach (array_slice($lacrados, 0, 4) as $iphone): ?>
-        <a href="<?= BASE_URL ?>/pages/detalhes.php?id=<?= $iphone["id'] ?>" class="product-card">
+        <a href="<?= BASE_URL ?>/pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
             <span class="badge-condition">Novo</span>
             
             <div class="product-image-wrapper">
@@ -176,7 +176,7 @@ setInterval(() => {
 </h2>
 <div class="products-grid" style="margin-bottom: 30px;">
     <?php foreach (array_slice($seminovos, 0, 8) as $iphone): ?>
-        <a href="<?= BASE_URL ?>/pages/detalhes.php?id=<?= $iphone["id'] ?>" class="product-card">
+        <a href="<?= BASE_URL ?>/pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
             <span class="badge-condition" style="background: rgba(255,149,0,0.15); color: #ff9f0a;">Usado Certificado</span>
             
             <div class="product-image-wrapper">

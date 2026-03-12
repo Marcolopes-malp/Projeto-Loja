@@ -51,7 +51,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
     <!-- Grid de Produtos completo -->
     <div class="products-grid" style="margin-bottom: 60px;">
         <?php foreach ($produtos as $iphone): ?>
-            <a href="<?= BASE_URL ?>/pages/detalhes.php?id=<?= $iphone["id'] ?>" class="product-card">
+            <a href="<?= BASE_URL ?>/pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
                 <span class="badge-condition" style="<?= $badge_estilo ?>"><?= $badge_texto ?></span>
                 
                 <div class="product-image-wrapper">

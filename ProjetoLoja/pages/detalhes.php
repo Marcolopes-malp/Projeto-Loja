@@ -36,7 +36,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
     <div class="breadcrumb">
         <a href="<?= BASE_URL ?>/index.php">Início</a>
         <span class="breadcrumb-separator">&rsaquo;</span>
-        <a href="<?= BASE_URL ?>/index.php#<?= strpos(strtolower($iphone["condicao']), 'novo') !== false ? 'lacrados' : 'seminovos' ?>">
+        <a href="<?= BASE_URL ?>/index.php#<?= strpos(strtolower($iphone['condicao']), 'novo') !== false ? 'lacrados' : 'seminovos' ?>">
             <?= strpos(strtolower($iphone['condicao']), 'novo') !== false ? 'Lançamentos' : 'Seminovos' ?>
         </a>
         <span class="breadcrumb-separator">&rsaquo;</span>

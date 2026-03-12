@@ -54,7 +54,7 @@ require_once dirname(__DIR__) . '/includes/header.php';
                 $badge_texto = strpos(strtolower($iphone['condicao']), 'novo') !== false ? 'Novo' : 'Usado Certificado';
                 $badge_estilo = $badge_texto === 'Novo' ? '' : 'background: rgba(255,149,0,0.15); color: #ff9f0a;';
             ?>
-            <a href="<?= BASE_URL ?>/pages/detalhes.php?id=<?= $iphone["id'] ?>" class="product-card">
+            <a href="<?= BASE_URL ?>/pages/detalhes.php?id=<?= $iphone['id'] ?>" class="product-card">
                 <span class="badge-condition" style="<?= $badge_estilo ?>"><?= $badge_texto ?></span>
                 
                 <div class="product-image-wrapper">
