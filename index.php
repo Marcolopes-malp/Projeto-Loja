@@ -214,26 +214,6 @@ setInterval(() => {
     </div>
 </div>
 
-<!-- Seção: Avaliações dos Clientes -->
-<section style="background: var(--bg-card); padding: 80px 0; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); margin-bottom: 60px;">
-    <div class="container">
-        <h2 class="section-title" style="border-bottom: none; text-align: center; justify-content: center; margin-bottom: 50px;">
-            <span>O que nossos clientes dizem</span>
-        </h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-            <?php foreach ($avaliacoes as $av): ?>
-                <div style="background: var(--bg-body); padding: 30px; border-radius: var(--radius-lg); border: 1px solid var(--border-light); text-align: center;">
-                    <div style="color: #FFD700; font-size: 1.5rem; margin-bottom: 16px;">
-                        <?= str_repeat('★', $av['estrelas']) ?>
-                    </div>
-                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">"<?= htmlspecialchars($av['texto']) ?>"</p>
-                    <h4 style="font-weight: 600;">- <?= htmlspecialchars($av['nome']) ?></h4>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
 
 <!-- Script para carregar recentes na home -->
 <script>

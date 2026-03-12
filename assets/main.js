@@ -54,7 +54,9 @@ function toggleWishlist(id, name, event) {
     
     let wishlist = JSON.parse(localStorage.getItem('rf_wishlist') || '[]');
     const index = wishlist.indexOf(id);
+    const apiAction = index === -1 ? 'add' : 'remove';
     
+    // Optimistically update UI
     if (index === -1) {
         wishlist.push(id);
         showToast(`${name} adicionado aos favoritos!`, 'success');
@@ -73,6 +75,15 @@ function toggleWishlist(id, name, event) {
     
     localStorage.setItem('rf_wishlist', JSON.stringify(wishlist));
     updateWishlistBadge();
+
+    // Sync with backend if logged in
+    if (typeof IS_LOGGED_IN !== 'undefined' && IS_LOGGED_IN) {
+        fetch(BASE_URL + '/pages/api_favoritos.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id_produto: id, acao: apiAction })
+        }).catch(err => console.error("Erro ao sincronizar favoritos", err));
+    }
 }
 
 function updateWishlistBadge() {

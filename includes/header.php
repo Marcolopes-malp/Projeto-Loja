@@ -15,6 +15,17 @@ if (isset($_SESSION['carrinho']) && is_array($_SESSION['carrinho'])) {
         $cart_count += (int)$item['quantidade'];
     }
 }
+
+// Fetch user favorites if logged in
+$user_favorites = [];
+if ($is_logged_in) {
+    require_once dirname(__DIR__) . '/includes/conexao.php';
+    try {
+        $stmt = $pdo->prepare("SELECT id_produto FROM favoritos WHERE id_usuario = ?");
+        $stmt->execute([$_SESSION['user']['id']]);
+        $user_favorites = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    } catch (PDOException $e) {}
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -22,6 +33,15 @@ if (isset($_SESSION['carrinho']) && is_array($_SESSION['carrinho'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RFIphones - O seu Apple Premium Reseller</title>
+    
+    <script>
+        const BASE_URL = "<?= BASE_URL ?>";
+        const IS_LOGGED_IN = <?= $is_logged_in ? 'true' : 'false' ?>;
+        <?php if ($is_logged_in): ?>
+        // Sync DB favorites to localStorage so frontend works seamlessly
+        localStorage.setItem('rf_wishlist', JSON.stringify(<?= json_encode(array_map('intval', $user_favorites)) ?>));
+        <?php endif; ?>
+    </script>
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,7 +93,7 @@ if (isset($_SESSION['carrinho']) && is_array($_SESSION['carrinho'])) {
                 <div class="dropdown" style="position: relative; display: inline-block;">
                     <a href="#" style="display: flex; align-items: center; gap: 6px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                        <span style="color: var(--text-main); font-weight: 500;">Olá, <?= htmlspecialchars($nome_usuario) ?></span>
+                        <span class="d-none-mobile" style="color: var(--text-main); font-weight: 500;">Olá, <?= htmlspecialchars($nome_usuario) ?></span>
                     </a>
                     <div style="margin-top: 4px; font-size: 0.85rem;">
                         <a href="<?= BASE_URL ?>/pages/logout.php" style="color: var(--text-secondary); text-decoration: none;">Sair da conta</a>
