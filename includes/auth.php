@@ -3,58 +3,55 @@ require_once dirname(__DIR__) . '/includes/config.php';
 
 session_start(); // Inicia a sessão para controle de login
 
-$users_file = dirname(__DIR__) . '/data/users.json';
-
-// Cria o arquivo caso não exista
-if (!file_exists(dirname($users_file))) {
-    mkdir(dirname($users_file), 0777, true);
-}
-if (!file_exists($users_file)) {
-    file_put_contents($users_file, '[]');
-}
+require_once dirname(__DIR__) . '/includes/conexao.php';
 
 /**
- * Registra um novo usuário no sistema.
+ * Registra um novo usuário no sistema (MySQL).
  */
 function register_user($nome, $email, $senha) {
-    global $users_file;
-    $users_data = file_get_contents($users_file);
-    $users = json_decode($users_data, true) ?: [];
+    global $pdo;
 
-    // Verifica se o email já existe
-    foreach ($users as $user) {
-        if ($user['email'] === $email) {
+    try {
+        // Verifica se o email já existe
+        $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
+        $stmt->execute([$email]);
+        if ($stmt->fetch()) {
             return ['sucesso' => false, 'mensagem' => 'Este e-mail já está cadastrado.'];
         }
+
+        // Cria o novo usuário
+        $hash = password_hash($senha, PASSWORD_DEFAULT);
+        $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
+        
+        if ($stmt->execute([trim($nome), trim($email), $hash])) {
+            return [
+                'sucesso' => true,
+                'usuario' => [
+                    'id' => $pdo->lastInsertId(),
+                    'nome' => trim($nome),
+                    'email' => trim($email)
+                ]
+            ];
+        } else {
+            return ['sucesso' => false, 'mensagem' => 'Erro ao inserir no banco de dados.'];
+        }
+    } catch (PDOException $e) {
+        return ['sucesso' => false, 'mensagem' => 'Erro de banco de dados: ' . $e->getMessage()];
     }
-
-    // Cria o novo usuário
-    $novo_usuario = [
-        'id' => uniqid(),
-        'nome' => trim($nome),
-        'email' => trim($email),
-        'senha' => password_hash($senha, PASSWORD_DEFAULT),
-        'data_cadastro' => date('Y-m-d H:i:s')
-    ];
-
-    $users[] = $novo_usuario;
-    if (file_put_contents($users_file, json_encode($users, JSON_PRETTY_PRINT))) {
-        return ['sucesso' => true, 'usuario' => $novo_usuario];
-    }
-
-    return ['sucesso' => false, 'mensagem' => 'Erro interno ao salvar usuário.'];
 }
 
 /**
- * Faz o login do usuário verificando a senha.
+ * Faz o login do usuário verificando a senha no banco de dados.
  */
 function login_user($email, $senha) {
-    global $users_file;
-    $users_data = file_get_contents($users_file);
-    $users = json_decode($users_data, true) ?: [];
+    global $pdo;
 
-    foreach ($users as $user) {
-        if ($user['email'] === $email) {
+    try {
+        $stmt = $pdo->prepare("SELECT id, nome, email, senha FROM usuarios WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
             if (password_verify($senha, $user['senha'])) {
                 // Senha correta, define a sessão
                 $_SESSION['user'] = [
@@ -67,9 +64,11 @@ function login_user($email, $senha) {
                 return ['sucesso' => false, 'mensagem' => 'Senha incorreta.'];
             }
         }
-    }
 
-    return ['sucesso' => false, 'mensagem' => 'E-mail não encontrado.'];
+        return ['sucesso' => false, 'mensagem' => 'E-mail não encontrado.'];
+    } catch (PDOException $e) {
+        return ['sucesso' => false, 'mensagem' => 'Erro de banco de dados: ' . $e->getMessage()];
+    }
 }
 
 /**
