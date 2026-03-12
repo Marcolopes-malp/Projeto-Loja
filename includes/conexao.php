@@ -1,7 +1,7 @@
 <?php
 // Substitua as informações abaixo pelas que você acabou de criar no cPanel
 $host = 'localhost'; // O pulo do gato: na HostGator, o host continua sendo localhost!
-$dbname = 'marc7906_loja'; // Coloque o nome completo do banco
+$dbname = 'marc7906_Loja'; // Coloque o nome completo do banco
 $user = 'marc7906_admin';  // Coloque o nome completo do usuário
 $pass = "Jm@13092018"; // A senha que você gerou lá no passo 4
 
